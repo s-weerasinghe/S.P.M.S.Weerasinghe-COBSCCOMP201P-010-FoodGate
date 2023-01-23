@@ -9,13 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var loginData : LoginData
     var body: some View {
-        Text("Hello, World!")
+        HomeView(loginData: loginData);
     }
 }
 
+
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(loginData: LoginData())
     }
 }
