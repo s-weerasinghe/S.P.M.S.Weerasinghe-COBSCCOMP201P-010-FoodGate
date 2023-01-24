@@ -24,6 +24,8 @@
 		09396F6A2970FB6C00EDB1E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09396F682970FB6C00EDB1E0 /* LaunchScreen.storyboard */; };
 		09396F752970FB6E00EDB1E0 /* FoodAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09396F742970FB6E00EDB1E0 /* FoodAppTests.swift */; };
 		09396F802970FB6E00EDB1E0 /* FoodAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09396F7F2970FB6E00EDB1E0 /* FoodAppUITests.swift */; };
+		09409FD4297EE9200088E574 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09409FD3297EE9200088E574 /* SectionTitleView.swift */; };
+		09409FD6297EF7960088E574 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09409FD5297EF7960088E574 /* AsyncImage.swift */; };
 		09C7A974297E7054009D050C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C7A973297E7054009D050C /* ProfileView.swift */; };
 		09C7A978297E8302009D050C /* FoodItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C7A977297E8302009D050C /* FoodItemModel.swift */; };
 		09F9F2DA2971275C005374E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09F9F2D92971275C005374E1 /* GoogleService-Info.plist */; };
@@ -73,6 +75,8 @@
 		09396F7B2970FB6E00EDB1E0 /* FoodAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09396F7F2970FB6E00EDB1E0 /* FoodAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAppUITests.swift; sourceTree = "<group>"; };
 		09396F812970FB6E00EDB1E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09409FD3297EE9200088E574 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
+		09409FD5297EF7960088E574 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		09C7A973297E7054009D050C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		09C7A977297E8302009D050C /* FoodItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemModel.swift; sourceTree = "<group>"; };
 		09F9F2D92971275C005374E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -200,9 +204,19 @@
 			path = FoodAppUITests;
 			sourceTree = "<group>";
 		};
+		09409FD2297EE8DA0088E574 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				09409FD3297EE9200088E574 /* SectionTitleView.swift */,
+				09409FD5297EF7960088E574 /* AsyncImage.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		0951A1392979AEE9007A0969 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				09409FD2297EE8DA0088E574 /* Component */,
 				0935335F297CFB0E0029ACA4 /* LoginView.swift */,
 				09353364297D1A160029ACA4 /* RegisterView.swift */,
 				093905B6297D81A9009F357F /* HomeView.swift */,
@@ -483,10 +497,12 @@
 				09353360297CFB0E0029ACA4 /* LoginView.swift in Sources */,
 				09353365297D1A160029ACA4 /* RegisterView.swift in Sources */,
 				093905B7297D81A9009F357F /* HomeView.swift in Sources */,
+				09409FD4297EE9200088E574 /* SectionTitleView.swift in Sources */,
 				09353363297D18820029ACA4 /* Alert.swift in Sources */,
 				09C7A978297E8302009D050C /* FoodItemModel.swift in Sources */,
 				093905B9297D81E0009F357F /* MyFoodView.swift in Sources */,
 				09396F622970FB5A00EDB1E0 /* ContentView.swift in Sources */,
+				09409FD6297EF7960088E574 /* AsyncImage.swift in Sources */,
 				093905BB297D81F2009F357F /* FoodDetailView.swift in Sources */,
 				093905BF297E4D26009F357F /* UserModel.swift in Sources */,
 				093905BD297E4625009F357F /* LoginData.swift in Sources */,

@@ -9,4 +9,6 @@
 import Foundation
 class LoginData: ObservableObject{
     @Published var loginState = false;
+    @Published var user : UserModel = UserModel(regid: 0, age: "", name: "");
+    @Published var reloadUI = false;
 }

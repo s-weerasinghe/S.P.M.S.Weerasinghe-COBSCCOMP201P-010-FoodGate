@@ -26,19 +26,19 @@ struct FoodDetailView: View {
                                     })
                         
                         
-                        NavigationLink(
-                            destination: MyFoodView(),
-                            label: {
-                                Text("Sign In")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color("primary"))
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.white)
-                                    .cornerRadius(50.0)
-                                    .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
-                                    .padding(.vertical)
-                            })
+//                        NavigationLink(
+//                            destination: MyFoodView(),
+//                            label: {
+//                                Text("Sign In")
+//                                    .fontWeight(.bold)
+//                                    .foregroundColor(Color("primary"))
+//                                    .padding()
+//                                    .frame(maxWidth: .infinity)
+//                                    .background(Color.white)
+//                                    .cornerRadius(50.0)
+//                                    .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
+//                                    .padding(.vertical)
+//                            })
                         
                         HStack {
                             Text("New around here? ")

@@ -42,7 +42,8 @@ struct LoginView: View {
                         
                         if(success){
                             self.loginData.loginState = true;
-                            self.presentationMode.wrappedValue.dismiss()
+                            self.isPushed = true;
+//                            self.presentationMode.wrappedValue.dismiss()
                             
                         }else{
                             self.alert = CustomAlert(msg: "Invalid Email or Password");
@@ -50,13 +51,17 @@ struct LoginView: View {
                     }
                     
                 }, label:{
-                    Text("Sign In").font(.title).fontWeight(.semibold).foregroundColor(.white).padding().frame(width: 200.0, height: 50.0).background(Color("primary")).cornerRadius(/*@START_MENU_TOKEN@*/8.0/*@END_MENU_TOKEN@*/)
+                    Text("Sign In").fontWeight(.bold)
+                    .foregroundColor(Color("primary"))
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+                    .cornerRadius(50.0)
+                    .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
+                    .padding(.vertical)
                 }).accessibility(identifier: "login_btn").alert(item: $alert) { con in
                     Alert(title: Text(con.msg))
                 }.padding(.top, 20.0)
-                
-                
-                
                 
                 NavigationLink(
                     destination: RegisterView(),
@@ -78,7 +83,7 @@ struct LoginView: View {
                 
                 Button(action:{
                     //action
-                    self.isPushed = true;
+//                    self.isPushed = true;
                 }, label:{
                     Text("Forget Password").fontWeight(.semibold).padding()
                 })
@@ -88,11 +93,11 @@ struct LoginView: View {
                 }, label:{
                     Text("Terms & Conditions").fontWeight(.regular).padding()
                 })
-            }
+                }.padding(10.0)
             .onAppear {
                 
             }
-            NavigationLink(destination: LoginView(loginData: loginData), isActive: $isPushed, label: {
+            NavigationLink(destination: HomeView(loginData: loginData), isActive: $isPushed, label: {
                 Text("")
             }).navigationBarTitle("Login")
         }

@@ -7,10 +7,12 @@
 //
 
 import Foundation
-import Foundation
 struct FoodItemModel:Identifiable {
-    var id: String = UUID().uuidString
+    var id: String =  UUID().uuidString
     var food_id: Int
     var img: String
     var name: String
+  
+    var calories:Int
+      var isFav: Bool
 }

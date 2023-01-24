@@ -9,9 +9,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var controller = ApiController();
     @ObservedObject var loginData : LoginData
     var body: some View {
-        HomeView(loginData: loginData);
+        HomeView(loginData: loginData).onAppear(){
+        }
+         
     }
 }
 

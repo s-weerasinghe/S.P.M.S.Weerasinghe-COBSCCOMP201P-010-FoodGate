@@ -76,18 +76,18 @@ struct RegisterView: View {
                                     }
                                 }
                             }, label:{
-                                Text("Sign Up").font(.title).fontWeight(.semibold).foregroundColor(.white).padding().frame(width: 220.0, height: 50.0).background(Color("primary")).cornerRadius(/*@START_MENU_TOKEN@*/8.0/*@END_MENU_TOKEN@*/)
+                                Text("Sign Up").fontWeight(.bold)
+                                .foregroundColor(Color("primary"))
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.white)
+                                .cornerRadius(50.0)
+                                .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
+                                .padding(.vertical)
                             }).alert(item: self.$alert) { con in
                                 Alert(title: Text(con.msg))
-                            }.padding(.top, 5.0)
-                            
-                            Button(action:{
-                                //action
-                            }, label:{
-                                Text("Login").font(.title).fontWeight(.semibold).foregroundColor(.white).padding().frame(width: 150.0, height: 40.0).background(Color("secondary")).cornerRadius(/*@START_MENU_TOKEN@*/8.0/*@END_MENU_TOKEN@*/)
-                            })
-                                .padding(.top, 20.0)
-                        }
+                            }.padding(.top, 20.0)
+                        }.padding(10.0)
                         
                     }
                 

@@ -53,40 +53,87 @@ class ApiController{
     }
     
     
-    func getUser()->UserModel {
+    func getUser(completionBlock: @escaping (_ success: UserModel) -> Void){
         var db: DatabaseReference!
         db = Database.database().reference()
         guard let id = Auth.auth().currentUser?.uid else {
-            return  UserModel(regid: 0, age: "", name: "")
+            completionBlock(UserModel(regid: 0, age: "", name: ""))
+            return
         }
         db.child("users").child(id).observeSingleEvent(of: .value, with: { (data) in
             let user = data.value as! [String: Any]
-            self.user = UserModel(id: .init(), regid: user["regid"] as! Int,age: user["age"] as! String,name: user["name"] as! String)
+            self.user = UserModel(id: id, regid: user["regid"] as! Int,age: user["age"] as! String,name: user["name"] as! String)
             print ("doneeeeee");
+            completionBlock(self.user)
         })
-        return self.user;
+       
     }
     
     
-    func getFoodList(completionBlock: @escaping (_ success: [FoodItemModel]) -> Void) {
-        print ("getFoodList");
+    func getFoodList(type: String,completionBlock: @escaping (_ success: [FoodItemModel]) -> Void) {
+      
         var foods:[FoodItemModel] = []
         var db: DatabaseReference!
         db = Database.database().reference()
-        db.child("foods").queryOrderedByKey().observeSingleEvent(of: .value) { (snapshot) in
+         let uid = Auth.auth().currentUser?.uid
+        db.child(type).queryOrderedByKey().observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 
                 let placeDict = snap.value as! [String: Any]
                 let img = placeDict["img"] as! String
                 let name = placeDict["name"] as! String
+                let calories = placeDict["calories"] as! Int
                 let id = placeDict["food_id"] as! Int
-                foods.append(FoodItemModel(id: .init(),food_id: id, img: img, name: name))
+                let fid = placeDict["id"] as! String
+                
+               
+                let val = placeDict[uid ?? "id"] ?? ""
+               
+                foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav:val as! String=="userFav"))
             }
             completionBlock(foods)
         }
-         
+        
     }
+    
+    func addFav(type: String,food_id:String,user:UserModel){
+        print(Auth.auth().currentUser!.uid)
+        var db: DatabaseReference!
+        db = Database.database().reference()
+        db.child(type).child(food_id).child(Auth.auth().currentUser!.uid).setValue("userFav")
+        
+        
+    }
+    
+    
+    func getFoodFavList(type: String,completionBlock: @escaping (_ success: [FoodItemModel]) -> Void) {
+      
+        var foods:[FoodItemModel] = []
+        var db: DatabaseReference!
+        db = Database.database().reference()
+        
+        let uid = Auth.auth().currentUser?.uid
+        
+        db.child(type).queryOrderedByKey().observeSingleEvent(of: .value) { (snapshot) in
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let placeDict = snap.value as! [String: Any]
+                let val = placeDict[uid ?? "id"] ?? ""
+                if(val as! String=="userFav"){
+                    let img = placeDict["img"] as! String
+                    let name = placeDict["name"] as! String
+                    let calories = placeDict["calories"] as! Int
+                    let id = placeDict["food_id"] as! Int
+                    let fid = placeDict["id"] as! String
+                    foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav: true))
+                }
+            }
+            completionBlock(foods)
+        }
+        
+    }
+
     
 
     
