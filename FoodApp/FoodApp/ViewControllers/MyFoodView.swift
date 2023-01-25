@@ -14,57 +14,38 @@ struct MyFoodView: View {
     var controller = ApiController();
     @State var food : FoodItemModel = FoodItemModel(id: "0",food_id: 0, img: "", name: "",calories:0,isFav: false);
     @State var type = "";
-    @State var myList  =  [FoodItemModel]()
+    @State var myList  : [FoodItemModel]=[ FoodItemModel(id: .init(),food_id: 1, img: "https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg", name: "name",calories: 900,isFav: false)]
     
     var body: some View {
-        ZStack {
-            Color("background").edgesIgnoringSafeArea(.all)
-            
-            ScrollView(.vertical){
-                VStack(alignment: .center){
-                    Text("Favorite").font(.headline).fontWeight(.bold)
+        
+        ZStack(alignment: .center) {
+                   
                     ScrollView(.vertical){
                         VStack{
-                            ForEach(self.myList, id: \.id) { result in
-                                HStack {
-                                    FoodCard(food:result,loginData:self.loginData)
+
+                            Text("Breakfast").font(.headline).fontWeight(.bold)
+                            ForEach(0..<myList.count, id: \.self) { index in
+                                VStack{
+                                    FoodCard(food:self.myList[index],loginData:self.loginData)
                                 }
                             }
-                        }.onAppear(){
-                            print("sss")
-                            
-                            self.controller.getFoodFavList(type:"lunch"){(success) -> Void in
-                                                         
-                                                       self.myList = success;
-                                                       print(self.myList)
-                                                   }
                         }
                     }
-                    
-                }
+                
             
-            }.onAppear(){
-                       
-                            self.controller.addFav(type:self.type, food_id: self.food.id, user: self.loginData.user)
-                            
-                //            self.controller.getFoodFavList(type:"breakfast"){(success) -> Void in
-                //
-                //                self.myList.append(contentsOf: success);
-                //                print(self.myList)
-                //            }
-                //
-                //            self.controller.getFoodFavList(type:"dinner"){(success) -> Void in
-                //                self.myList.append(contentsOf: success);
-                //
-                //                print(self.myList)
-                //            }
-                            
-                       
-                            print(self.myList)
-            }
-        }
-    }
+            
+    }.onAppear(){
+    self.myList.append(FoodItemModel(id: .init(),food_id: 1, img: "https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg", name: "name1",calories: 900,isFav: false))
+    self.myList.append(FoodItemModel(id: .init(),food_id: 1, img: "https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg", name: "name2",calories: 900,isFav: false))
     
+        }.frame(
+          minWidth: 0,
+          maxWidth: .infinity,
+          minHeight: 0,
+          maxHeight: .infinity,
+          alignment: .center
+        )
+}
 }
 
 struct MyFoodView_Previews: PreviewProvider {

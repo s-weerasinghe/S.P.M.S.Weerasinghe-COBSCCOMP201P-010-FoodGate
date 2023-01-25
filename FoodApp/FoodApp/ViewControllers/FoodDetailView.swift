@@ -9,51 +9,38 @@
 import SwiftUI
 
 struct FoodDetailView: View {
+    @ObservedObject var loginData : LoginData
+    var controller = ApiController();
+    @State var food : FoodItemModel = FoodItemModel(id: "0",food_id: 0, img: "", name: "",calories:0,isFav: false);
+    @State var type = "";
+    @State var myList  =  [FoodItemModel]()
+    
     var body: some View {
-            NavigationView {
-                ZStack {
-                    Color("primary").edgesIgnoringSafeArea(.all)
-                    VStack {
-                        Spacer()
-                    
-                        Spacer()
-                        
-                        
-                        Button(action:{
-                                        UIApplication.shared.open(URL(string: "https://www.nibm.lk")!)
-                                    }, label:{
-                                        Text("Get Started").fontWeight(.regular).padding()
-                                    })
-                        
-                        
-//                        NavigationLink(
-//                            destination: MyFoodView(),
-//                            label: {
-//                                Text("Sign In")
-//                                    .fontWeight(.bold)
-//                                    .foregroundColor(Color("primary"))
-//                                    .padding()
-//                                    .frame(maxWidth: .infinity)
-//                                    .background(Color.white)
-//                                    .cornerRadius(50.0)
-//                                    .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
-//                                    .padding(.vertical)
-//                            })
-                        
-                        HStack {
-                            Text("New around here? ")
-                            Text("Sign in")
-                                .foregroundColor(Color("primary"))
+        
+        ZStack {
+            Text("Breakfast").font(.headline).fontWeight(.bold)
+            ScrollView(.vertical){
+                ZStack{
+                    ForEach(0..<myList.count, id: \.self) { index in
+                        VStack{
+                            FoodCard(food:self.myList[index],loginData:self.loginData)
                         }
                     }
-                    .padding()
                 }
             }
+            
+            
+            
+        }.onAppear(){
+            self.myList.append(FoodItemModel(id: .init(),food_id: 1, img: "https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg", name: "name1",calories: 900,isFav: false))
+            self.myList.append(FoodItemModel(id: .init(),food_id: 1, img: "https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg", name: "name2",calories: 900,isFav: false))
+            
         }
     }
+}
 
-    struct FoodDetailView_Previews: PreviewProvider {
-        static var previews: some View {
-            FoodDetailView()
-        }
+struct FoodDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        FoodDetailView(loginData: LoginData())
     }
+}

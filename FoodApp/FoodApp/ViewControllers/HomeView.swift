@@ -152,22 +152,10 @@ struct FoodCard: View {
                             Image(systemName: "star").foregroundColor(Color(food.isFav ? "selected" : selectedColor ))
 
                     })
-//                    Button(action: {
-//                        print("button pressed")
-//                        print(self.food.img)
-//
-//                        self.loginData.reloadUI = true;
-//
-//                    }) {
-//                        Image(systemName: "star")
-//                            .foregroundColor(Color(selectedColor))
-//                    }
-                    
+
                 }
                 Spacer()
                 Image(systemName: "eye").foregroundColor(Color.white)
-                
-              
             }
             .padding(5.0)
         }
