@@ -9,93 +9,68 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @Binding var rootView: Bool;
+    var controller = ApiController();
+    @ObservedObject var loginData : LoginData
+     @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        ZStack {
-            Color("background").edgesIgnoringSafeArea(.all)
-            VStack(alignment: .center){
-         
-                
-VStack (alignment: .leading, spacing: 16) {
-//    SectionTitleView(title: "Today's Fresh Recipes")
-    
-    ScrollView (.horizontal, showsIndicators: false) {
-        HStack (spacing: 16) {
-            
-            RecipeCard(image: "star")
-//            RecipeCard(image: #imageLiteral(resourceName: "nibm_logo"))
-        }
-    }
-}
-                
-                Button(action:{
-                    UIApplication.shared.open(URL(string: "https://www.nibm.lk")!)
-                }, label:{
-                    Text("Terms & Conditions").fontWeight(.regular).padding()
-                })
-            }.padding(10.0)
-                .onAppear {
-                    
-            }
-            
-        }
-        
-    }
-}
-
-struct RecipeCard: View {
-    let image: String
-    var body: some View {
-        ZStack {
-            VStack (alignment: .leading, spacing: 8) {
-                Image(systemName: "star")
-                    .padding(.bottom, 60)
-                Text("Breakfast")
-                    .font(.caption)
-                    .foregroundColor(Color.gray)
-                Text("French Toast with Berries")
-                    .fontWeight(.medium)
-                    .lineLimit(nil)
-                HStack (spacing: 2) {
-                    ForEach(0 ..< 5) { item in
-                        Image(systemName: "star")
-                            .renderingMode(.template)
-                            .foregroundColor(Color("primary"))
+        ZStack{
+            Form {
+                Image("nibm_logo")
+                    .resizable()
+                    .clipped()
+                    .frame(width: 100, height: 100, alignment: .center)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.blue, lineWidth: 2.0))
+                Section(header: Text("Basic Information")) {
+                    HStack {
+                        Text("Email")
+                        Spacer(minLength: 100)
+                        Text(loginData.user.email)
+                    }
+                    HStack {
+                        Text("Name")
+                        Spacer(minLength: 100)
+                        Text(loginData.user.name)
+                    }
+                    HStack {
+                        Text("Age")
+                        Spacer(minLength: 100)
+                        Text(loginData.user.age)
                     }
                 }
-                Text("120 Calories")
-                    .font(.caption)
-                    .foregroundColor(Color("primary"))
-                
-                HStack {
-                    Image(systemName: "star")
-                    Text("10 mins")
-                        .font(.title)
-                        .foregroundColor(Color.gray)
-                    Spacer()
-                    
-                    Image(systemName: "star")
-                    Text("1 Serving")
-                        .font(.title)
-                        .foregroundColor(Color.gray)
+                Section(header: Text("")) {
+                    HStack {
+                       
+                        Button(action:{
+                            print("hello");
+                            print(self.rootView);
+                            self.rootView = false;
+                           
+                              self.controller.logOut()
+                              self.presentationMode.wrappedValue.dismiss()
+                            print(self.rootView);
+                        }, label:{
+                            Text("Logout").fontWeight(.bold)
+                                .foregroundColor(Color("primary"))
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.white)
+                                .cornerRadius(50.0)
+                                .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
+                                .padding(.vertical)
+                        })
+                    }
                 }
                 
             }
-            .frame(width: 147)
-            .padding()
-            .background(Color.gray)
-            .cornerRadius(20.0)
-            
-            //                Image
-            Image(systemName: image)
-                .offset(x: 45, y: -60)
             
         }
-        .padding(.trailing, 25)
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView(loginData: LoginData())
+//    }
+//}

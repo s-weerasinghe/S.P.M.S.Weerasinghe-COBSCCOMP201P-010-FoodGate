@@ -11,29 +11,37 @@ import SwiftUI
 struct FoodDetailView: View {
     @ObservedObject var loginData : LoginData
     var controller = ApiController();
-    @State var food : FoodItemModel = FoodItemModel(id: "0",food_id: 0, img: "", name: "",calories:0,isFav: false);
+    @State var food : FoodItemModel = FoodItemModel(id: "0",food_id: 0, img: "", name: "fgdfgdfgdgdfgd",calories:0,isFav: false,description: "bfghfghfghfghfghfghfghcvbcvbdfgdfgdfgdfgdfgdfg");
     @State var type = "";
-    @State var myList  =  [FoodItemModel]()
     
     var body: some View {
         
         ZStack {
-            Text("Breakfast").font(.headline).fontWeight(.bold)
-            ScrollView(.vertical){
-                ZStack{
-                    ForEach(0..<myList.count, id: \.self) { index in
-                        VStack{
-                            FoodCard(food:self.myList[index],loginData:self.loginData)
+            VStack{
+                AsyncImage(urlString: food.img)
+                    .frame(width: 300, height: 250, alignment: .center)
+                Section(header: Text("Information")) {
+                    ScrollView(.vertical){
+                        VStack(alignment: .leading, spacing: 0) {
+                            HStack {
+                                Text("Name - ").padding(.trailing, 5.0)
+                                Text(food.name)
+                            }.padding(5)
+                            HStack {
+                                Text("Calories - ").padding(.trailing, 5.0)
+                                Text(String(food.calories))
+                            }.padding(5)
+                            HStack {
+                                Text("Description - ").padding(.trailing, 5.0)
+                                Text(food.description)
+                            }.padding(5)
                         }
+                        
                     }
-                }
+                }.padding(10.0)
             }
-            
-            
-            
         }.onAppear(){
-            self.myList.append(FoodItemModel(id: .init(),food_id: 1, img: "https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg", name: "name1",calories: 900,isFav: false))
-            self.myList.append(FoodItemModel(id: .init(),food_id: 1, img: "https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg", name: "name2",calories: 900,isFav: false))
+            
             
         }
     }

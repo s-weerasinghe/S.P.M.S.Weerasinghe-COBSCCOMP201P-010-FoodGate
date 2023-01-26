@@ -51,6 +51,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		097231FE2980FE6300440708 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0935335F297CFB0E0029ACA4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		09353362297D18820029ACA4 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -262,12 +275,15 @@
 				09396F572970FB5A00EDB1E0 /* Frameworks */,
 				09396F582970FB5A00EDB1E0 /* Resources */,
 				AD33C8FE328D81339A1125E5 /* [CP] Embed Pods Frameworks */,
+				097231FE2980FE6300440708 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FoodApp;
+			packageProductDependencies = (
+			);
 			productName = FoodApp;
 			productReference = 09396F5A2970FB5A00EDB1E0 /* FoodApp.app */;
 			productType = "com.apple.product-type.application";
@@ -343,6 +359,8 @@
 				Base,
 			);
 			mainGroup = 09396F512970FB5A00EDB1E0;
+			packageReferences = (
+			);
 			productRefGroup = 09396F5B2970FB5A00EDB1E0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

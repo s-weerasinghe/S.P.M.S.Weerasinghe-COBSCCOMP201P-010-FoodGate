@@ -42,8 +42,8 @@ struct LoginView: View {
                         
                         if(success){
                             self.loginData.loginState = true;
-                            self.isPushed = true;
-//                            self.presentationMode.wrappedValue.dismiss()
+//                            self.isPushed = true;
+                            self.presentationMode.wrappedValue.dismiss()
                             
                         }else{
                             self.alert = CustomAlert(msg: "Invalid Email or Password");
@@ -83,7 +83,7 @@ struct LoginView: View {
                 
                 Button(action:{
                     //action
-//                    self.isPushed = true;
+                    self.isPushed = true;
                 }, label:{
                     Text("Forget Password").fontWeight(.semibold).padding()
                 })
@@ -97,7 +97,7 @@ struct LoginView: View {
             .onAppear {
                 
             }
-            NavigationLink(destination: HomeView(loginData: loginData), isActive: $isPushed, label: {
+            NavigationLink(destination: HomeView(rootView: false,loginData: loginData), isActive: $isPushed, label: {
                 Text("")
             }).navigationBarTitle("Login")
         }

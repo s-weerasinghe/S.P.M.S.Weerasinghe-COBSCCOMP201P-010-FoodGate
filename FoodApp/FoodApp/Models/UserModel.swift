@@ -8,8 +8,9 @@
 
 import Foundation
 struct UserModel: Identifiable {
-  var id: String = UUID().uuidString
-  var regid: Int
-  var age: String
-  var name: String
+    var id: String = UUID().uuidString
+    var regid: Int
+    var age: String
+    var name: String
+    var email: String
 }

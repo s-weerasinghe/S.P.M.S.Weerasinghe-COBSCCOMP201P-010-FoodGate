@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class ApiController{
-    var user = UserModel(regid: 0, age: "", name: "")
+    var user = UserModel(regid: 0, age: "", name: "",email:"")
 
     func registerUser(email: String, password: String,name:String,age:String, completionBlock: @escaping (_ success: Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) {(res, error) in
@@ -19,6 +19,7 @@ class ApiController{
                 let id=Int64((Date().timeIntervalSince1970 * 1000.0).rounded())
                 let data    =  ["regid":id,
                                 "name":name,
+                                "email":email,
                                 "age":age] as [String : Any]
                 
                 var db: DatabaseReference!
@@ -57,12 +58,12 @@ class ApiController{
         var db: DatabaseReference!
         db = Database.database().reference()
         guard let id = Auth.auth().currentUser?.uid else {
-            completionBlock(UserModel(regid: 0, age: "", name: ""))
+            completionBlock(UserModel(regid: 0, age: "", name: "",email:""))
             return
         }
         db.child("users").child(id).observeSingleEvent(of: .value, with: { (data) in
             let user = data.value as! [String: Any]
-            self.user = UserModel(id: id, regid: user["regid"] as! Int,age: user["age"] as! String,name: user["name"] as! String)
+            self.user = UserModel(id: id, regid: user["regid"] as! Int,age: user["age"] as! String,name: user["name"] as! String,email: user["email"] as! String)
             print ("doneeeeee");
             completionBlock(self.user)
         })
@@ -76,6 +77,8 @@ class ApiController{
         var db: DatabaseReference!
         db = Database.database().reference()
          let uid = Auth.auth().currentUser?.uid
+        print(uid)
+        print("listload")
         db.child(type).queryOrderedByKey().observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
@@ -83,6 +86,7 @@ class ApiController{
                 let placeDict = snap.value as! [String: Any]
                 let img = placeDict["img"] as! String
                 let name = placeDict["name"] as! String
+                 let description = placeDict["description"] as! String
                 let calories = placeDict["calories"] as! Int
                 let id = placeDict["food_id"] as! Int
                 let fid = placeDict["id"] as! String
@@ -90,7 +94,7 @@ class ApiController{
                
                 let val = placeDict[uid ?? "id"] ?? ""
                
-                foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav:val as! String=="userFav"))
+                foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav:val as! String=="userFav",description: description))
             }
             completionBlock(foods)
         }
@@ -124,9 +128,10 @@ class ApiController{
                     let img = placeDict["img"] as! String
                     let name = placeDict["name"] as! String
                     let calories = placeDict["calories"] as! Int
+                    let description = placeDict["description"] as! String
                     let id = placeDict["food_id"] as! Int
                     let fid = placeDict["id"] as! String
-                    foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav: true))
+                    foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav: true,description: description))
                 }
             }
             completionBlock(foods)

@@ -12,7 +12,8 @@ struct FoodItemModel:Identifiable {
     var food_id: Int
     var img: String
     var name: String
-  
+    
     var calories:Int
-      var isFav: Bool
+    var isFav: Bool
+    var description :String;
 }
