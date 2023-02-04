@@ -19,11 +19,21 @@ class MyFavouriteViewController: UIViewController {
         view.backgroundColor = .white
         setupViews()
         setupConstraints()
+        customBackButton()
         orderTableView.delegate = self
         orderTableView.dataSource = self
         orderTableView.register(FoodViewTableCell.self, forCellReuseIdentifier: FoodViewTableCell.reuseableId)
         
     }
+    
+    func customBackButton(){
+        // custom back button
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.backward",withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.backward",withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: .none, action: .none)
+        navigationController?.navigationBar.tintColor = .black
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,6 +94,14 @@ extension MyFavouriteViewController: UITableViewDelegate, UITableViewDataSource 
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 133.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = FoodViewController()
+        
+        let food = foodList[indexPath.row]
+        vc.food = food;
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     

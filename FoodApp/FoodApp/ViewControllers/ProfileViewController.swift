@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Profile"
         setupViews()
         setupConstraints()
         
@@ -25,7 +26,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
             ageInput.text = user.age
             
         }
-        foodImage.image = UIImage(contentsOfFile: "food")
+        foodImage.image = UIImage(contentsOfFile: "multiply")
     }
     
     @objc func backBtnPressed(){

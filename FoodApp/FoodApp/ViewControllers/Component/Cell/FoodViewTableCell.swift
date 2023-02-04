@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FoodViewTableCell: UITableViewCell {
     static let reuseableId:String = "FoodOrder"
@@ -64,7 +65,7 @@ class FoodViewTableCell: UITableViewCell {
         let lb = UILabel()
         lb.textColor = color.grey
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = UIFont(name: "EuclidCircularB-Light", size: 14)
+        lb.font = UIFont.boldSystemFont(ofSize: 14)
         lb.alpha = 0.8
         lb.scaleFont()
         return lb
@@ -80,7 +81,7 @@ class FoodViewTableCell: UITableViewCell {
     
     let retryIcon : UIImageView = {
         var iv = UIImageView()
-        let img = UIImage(systemName: "arrow.counterclockwise")?.withRenderingMode(.alwaysOriginal)
+        let img = UIImage(systemName: "multiply.circle.fill")?.withRenderingMode(.alwaysOriginal)
         iv.image = img
         iv.tintColor = .black
         iv.contentMode = .scaleAspectFit
@@ -131,7 +132,8 @@ class FoodViewTableCell: UITableViewCell {
     
     func setupOrder(for item: FoodItemModel){
         
-        orderImage.image = UIImage(named: "food")
+        let url = URL(string: item.img)
+        orderImage.kf.setImage(with: url)
         titleLabel.text = item.name
         priceLabel.text = ""
         dateLabel.text = item.description

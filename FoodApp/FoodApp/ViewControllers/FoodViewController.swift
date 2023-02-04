@@ -78,7 +78,10 @@ class FoodViewController: UIViewController {
     }()
     
     let foodDesc : UILabel = {
-        let label = UILabel()
+        let label = UILabel(frame: CGRect(x: 5, y: 0, width: 35, height: 45))
+        label.text = ""
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = ""
         return label
