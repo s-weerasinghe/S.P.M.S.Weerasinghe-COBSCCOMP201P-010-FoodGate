@@ -10,7 +10,8 @@ import UIKit
 
 class MyFavouriteViewController: UIViewController {
     
-    let foodList : [FoodItemModel] = []
+    var foodList : [FoodItemModel] = []
+    let controller  = ApiController();
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +24,31 @@ class MyFavouriteViewController: UIViewController {
         orderTableView.register(FoodViewTableCell.self, forCellReuseIdentifier: FoodViewTableCell.reuseableId)
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        
+        self.foodList = [];
+        
+        controller.getFoodFavList(type: "breakfast") { (foodListGet) in
+            DispatchQueue.main.async {
+                self.foodList.append(contentsOf: foodListGet);
+                self.orderTableView.reloadData();
+            }
+        }
+        controller.getFoodFavList(type: "lunch") { (foodListGet) in
+            DispatchQueue.main.async {
+                self.foodList.append(contentsOf: foodListGet);
+                self.orderTableView.reloadData();
+            }
+        }
+        controller.getFoodFavList(type: "dinner") { (foodListGet) in
+            DispatchQueue.main.async {
+                self.foodList.append(contentsOf: foodListGet);
+                self.orderTableView.reloadData();
+            }
+        }
     }
     
     let heading: UILabel = {
