@@ -11,6 +11,7 @@ import UIKit
 class MainViewController: UITabBarController {
     
     var controller = ApiController();
+    var user : UserModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -21,6 +22,7 @@ class MainViewController: UITabBarController {
             if(user.regid==0){
                 self.createView(isLogin:false)
             }else{
+                self.user = user;
                 self.createView(isLogin:true)
             }
             
@@ -29,7 +31,9 @@ class MainViewController: UITabBarController {
     }
     
     func createView(isLogin:Bool){
-        let hView = UINavigationController(rootViewController: HomeViewController())
+        let home = HomeViewController();
+        home.user = user;
+        let hView = UINavigationController(rootViewController: home)
         hView.tabBarItem.image = UIImage(systemName: "house")
         hView.title = "Home"
         

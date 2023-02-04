@@ -77,7 +77,7 @@ class FoodDescriptionDetailsView: UIView {
         var iv = UIImageView(frame:.zero)
         let img = UIImage(systemName: "star.fill")
         iv.image = img
-        iv.tintColor = .black
+        iv.tintColor = .green
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.translatesAutoresizingMaskIntoConstraints = false

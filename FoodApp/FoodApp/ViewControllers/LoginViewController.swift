@@ -187,7 +187,9 @@ class LoginViewController: UIViewController {
             if(success){
                 self.controller.getUser{(user) -> Void in
                    
-                    let hView = UINavigationController(rootViewController: HomeViewController())
+                    let home = HomeViewController();
+                    home.user = user;
+                    let hView = UINavigationController(rootViewController: home)
                     hView.tabBarItem.image = UIImage(systemName: "house")
                     hView.title = "Home"
                     

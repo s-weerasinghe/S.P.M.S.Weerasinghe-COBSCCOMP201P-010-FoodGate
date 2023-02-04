@@ -76,8 +76,7 @@ class ApiController{
         var db: DatabaseReference!
         db = Database.database().reference()
          let uid = Auth.auth().currentUser?.uid
-        print(uid)
-        print("listload")
+        
         db.child(type).queryOrderedByKey().observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children {
                 let snap = child as! DataSnapshot

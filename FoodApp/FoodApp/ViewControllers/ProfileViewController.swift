@@ -119,17 +119,20 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @objc func ougOutClick() {
         
         self.controller.logOut()
-        let homeview = UINavigationController(rootViewController: MainViewController())
-        homeview.tabBarItem.image = UIImage(systemName: "house")
-        homeview.title = "Home"
+  
+        let home = HomeViewController();
+        home.user = nil;
+        let hView = UINavigationController(rootViewController: home)
+        hView.tabBarItem.image = UIImage(systemName: "house")
+        hView.title = "Home"
         
         let loginview = UINavigationController(rootViewController: LoginViewController())
         loginview.tabBarItem.image = UIImage(systemName: "person")
         loginview.title = "Login"
         
+        self.tabBarController?.tabBar.tintColor = .green
+        self.tabBarController?.viewControllers = [hView,loginview];
         self.tabBarController?.selectedIndex = 0;
-        self.tabBarController?.tabBar.tintColor = .label
-        self.tabBarController?.viewControllers = [homeview,loginview];
     }
     
     func setupViews(){

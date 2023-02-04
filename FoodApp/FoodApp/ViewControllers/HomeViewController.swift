@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     var foodListD:[FoodItemModel]=[ ]
     let reusableId = "cellId"
     let foodLayout = FoodLayout.shared
-    
+    var user : UserModel? = nil
     
     var myCollectionView:UICollectionView?
     
@@ -56,6 +56,30 @@ class HomeViewController: UIViewController {
         }
 
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("asdadad")
+        controller.getFoodList(type: "breakfast") { (foodListGet) in
+            DispatchQueue.main.async {
+            self.foodListB = foodListGet;
+                self.collectionView.reloadData();
+            }
+        }
+        controller.getFoodList(type: "lunch") { (foodListGet) in
+            DispatchQueue.main.async {
+            self.foodListL = foodListGet;
+                self.collectionView.reloadData();
+            }
+        }
+        
+        controller.getFoodList(type: "dinner") { (foodListGet) in
+            DispatchQueue.main.async {
+            self.foodListD = foodListGet;
+                self.collectionView.reloadData();
+            }
+        }
     }
 
     
@@ -167,12 +191,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if indexPath.section == 0{
             let food = foodListB[indexPath.row]
             vc.food = food;
+            vc.type = "breakfast"
+            vc.user = user
         }else  if indexPath.section == 1{
             let food = foodListL[indexPath.row]
             vc.food = food;
+            vc.type = "lunch"
+            vc.user = user
         }else  if indexPath.section == 2{
             let food = foodListD[indexPath.row]
             vc.food = food;
+            vc.type = "dinner"
+            vc.user = user
         }
         
         navigationController?.pushViewController(vc, animated: true)

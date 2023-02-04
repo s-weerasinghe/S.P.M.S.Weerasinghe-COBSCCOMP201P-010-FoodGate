@@ -11,12 +11,16 @@ import UIKit
 class FoodViewController: UIViewController {
 
     var food: FoodItemModel?
+    var user : UserModel?
+    var type : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         setupNavigationBar()
-        
+        print("asd")
+        print(type);
+        print(user)
         
        
         view.addSubview(lblHolder)
@@ -37,8 +41,10 @@ class FoodViewController: UIViewController {
         foodImage.clipsToBounds=true
         
         
-        favHolder.insertArrangedSubview(favLbl, at: 0)
+        favHolder.insertArrangedSubview(favButton, at: 0)
         favHolder.insertArrangedSubview(ratingIcon, at: 1)
+        
+        favHolder.isHidden = user == nil
         
         lblHolder.insertArrangedSubview(foodName, at: 0)
         lblHolder.insertArrangedSubview(foodCal, at: 1)
@@ -109,27 +115,10 @@ class FoodViewController: UIViewController {
         let holder = UIStackView()
         holder.translatesAutoresizingMaskIntoConstraints = false
         holder.axis = .horizontal
-        holder.spacing = 15
-        let tapGR =   UITapGestureRecognizer(target: self, action: #selector(addFav(sender:)))
-        holder.addGestureRecognizer(tapGR)
-        holder.isUserInteractionEnabled = true
+        holder.spacing = 5
         return holder
         
     }()
-    
-    // hide tabBar
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-     
-        self.tabBarController?.tabBar.isHidden = true
-        self.tabBarController?.tabBar.layer.zPosition = -1
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.isHidden = false
-        self.tabBarController?.tabBar.layer.zPosition = 0
-    }
-    // MARK: Properties -
     
     let foodImage : UIImageView = {
         var iv = UIImageView()
@@ -152,6 +141,29 @@ class FoodViewController: UIViewController {
        
         return iv
     }()
+    
+    let favButton : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Add to Favourite" , for: .normal)
+        button.layer.cornerRadius = 8
+        button.backgroundColor = .green
+        button.addTarget(self, action: #selector(addFav), for: .touchUpInside)
+        return button
+    }()
+    // hide tabBar
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+     
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.layer.zPosition = -1
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.layer.zPosition = 0
+    }
+
     
     func setupNavigationBar(){
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -177,8 +189,12 @@ class FoodViewController: UIViewController {
     }
 
     let controller = ApiController();
-    @objc func addFav(sender: UITapGestureRecognizer){
+ 
+    
+    @objc func addFav() {
         print("asd")
-//        controller.addFav(type: String, food_id: <#T##String#>, user: <#T##UserModel#>)
+        print(type);
+        print(user)
+        controller.addFav(type: type, food_id: food!.id, user: user!)
     }
 }
