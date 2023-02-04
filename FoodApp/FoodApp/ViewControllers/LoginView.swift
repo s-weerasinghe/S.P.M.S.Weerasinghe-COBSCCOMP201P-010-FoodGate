@@ -63,19 +63,19 @@ struct LoginView: View {
                     Alert(title: Text(con.msg))
                 }.padding(.top, 20.0)
                 
-                NavigationLink(
-                    destination: RegisterView(),
-                    label: {
-                        Text("Sign Up")
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("primary"))
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.white)
-                            .cornerRadius(50.0)
-                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
-                            .padding(.vertical)
-                }).navigationBarTitle("Login")
+//                NavigationLink(
+//                    destination: RegisterView(),
+//                    label: {
+//                        Text("Sign Up")
+//                            .fontWeight(.bold)
+//                            .foregroundColor(Color("primary"))
+//                            .padding()
+//                            .frame(maxWidth: .infinity)
+//                            .background(Color.white)
+//                            .cornerRadius(50.0)
+//                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
+//                            .padding(.vertical)
+//                }).navigationBarTitle("Login")
                 
                 
                 

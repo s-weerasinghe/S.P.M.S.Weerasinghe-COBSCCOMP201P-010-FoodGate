@@ -13,4 +13,5 @@ struct UserModel: Identifiable {
     var age: String
     var name: String
     var email: String
+    var phone: String
 }

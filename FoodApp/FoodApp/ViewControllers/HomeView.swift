@@ -46,7 +46,7 @@ struct HomeView: View {
                         ScrollView(.horizontal){
                             HStack{
                                 ForEach(self.lunch, id: \.id) { result in
-                                    FoodCard(food:result,loginData:self.loginData,type:"lunch")
+                                    FoodCard(food:result,loginData:self.loginData,type:"breakfast")
                                 }
                             }
                         }

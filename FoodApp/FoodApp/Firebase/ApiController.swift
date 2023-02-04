@@ -11,15 +11,15 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class ApiController{
-    var user = UserModel(regid: 0, age: "", name: "",email:"")
 
-    func registerUser(email: String, password: String,name:String,age:String, completionBlock: @escaping (_ success: Bool) -> Void) {
+    func registerUser(email: String, password: String,name:String,age:String,phone:String, completionBlock: @escaping (_ success: Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) {(res, error) in
             if let user = res?.user {
                 let id=Int64((Date().timeIntervalSince1970 * 1000.0).rounded())
                 let data    =  ["regid":id,
                                 "name":name,
                                 "email":email,
+                                "phone":phone,
                                 "age":age] as [String : Any]
                 
                 var db: DatabaseReference!
@@ -58,14 +58,13 @@ class ApiController{
         var db: DatabaseReference!
         db = Database.database().reference()
         guard let id = Auth.auth().currentUser?.uid else {
-            completionBlock(UserModel(regid: 0, age: "", name: "",email:""))
+            completionBlock(UserModel(regid: 0, age: "", name: "",email:"",phone:""))
             return
         }
         db.child("users").child(id).observeSingleEvent(of: .value, with: { (data) in
             let user = data.value as! [String: Any]
-            self.user = UserModel(id: id, regid: user["regid"] as! Int,age: user["age"] as! String,name: user["name"] as! String,email: user["email"] as! String)
-            print ("doneeeeee");
-            completionBlock(self.user)
+            let usr = UserModel(id: id, regid: user["regid"] as! Int,age: user["age"] as! String,name: user["name"] as! String,email: user["email"] as! String, phone: user["phone"] as! String)
+            completionBlock(usr)
         })
        
     }
