@@ -47,12 +47,12 @@ class MyFavouriteViewController: UIViewController {
 
 extension MyFavouriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orderList.count
+        return foodList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FoodViewTableCell.reuseableId, for: indexPath) as! OrderHistoryCell
-        let item = orderList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: FoodViewTableCell.reuseableId, for: indexPath) as! FoodViewTableCell
+        let item = foodList[indexPath.row]
         cell.setupOrder(for: item)
         cell.layoutMargins = UIEdgeInsets.zero
         cell.separatorInset = UIEdgeInsets.zero
