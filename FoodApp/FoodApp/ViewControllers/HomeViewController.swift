@@ -179,10 +179,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reusableId, for: indexPath) as! HeaderView
         if indexPath.section == 0 {
             view.headingLabel.text = "Breakfast"
+            view.headingButton.tag = 0
+            view.headingButton.addTarget(self, action: #selector(headerAllClick), for: .touchUpInside)
         }else if indexPath.section == 1 {
             view.headingLabel.text = "Lunch"
+            view.headingButton.tag = 1
+            view.headingButton.addTarget(self, action: #selector(headerAllClick), for: .touchUpInside)
         }else if indexPath.section == 2 {
             view.headingLabel.text = "Dinner"
+            view.headingButton.tag = 2
+            view.headingButton.addTarget(self, action: #selector(headerAllClick), for: .touchUpInside)
         }
         return view
     }
@@ -207,6 +213,22 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func headerAllClick(sender:UIButton){
+        let vc = AllFoodViewController();
+        if sender.tag == 0{
+            vc.type = "breakfast"
+            vc.titleCus = "Breakfast"
+        }else  if sender.tag == 1{
+            vc.type = "lunch"
+            vc.titleCus = "Lunch"
+        }else  if sender.tag == 2{
+            vc.type = "dinner"
+            vc.titleCus = "Dinner"
+        }
+        navigationController?.pushViewController(vc, animated: true)
+   
     }
 }
 
