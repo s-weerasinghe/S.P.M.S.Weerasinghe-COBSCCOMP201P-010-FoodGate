@@ -106,6 +106,7 @@ extension AllFoodViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = FoodViewController()
         
+        
         let food = foodList[indexPath.row]
         vc.food = food;
         navigationController?.pushViewController(vc, animated: true)
