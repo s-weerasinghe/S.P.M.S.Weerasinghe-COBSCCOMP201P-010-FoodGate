@@ -20,7 +20,6 @@
 		0932AB79298D1F5600FAD71B /* FoodViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932AB78298D1F5600FAD71B /* FoodViewCell.swift */; };
 		0932AB84298D251300FAD71B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932AB83298D251300FAD71B /* HeaderView.swift */; };
 		0932ABE8298D312C00FAD71B /* FoodDataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932ABE7298D312C00FAD71B /* FoodDataDetailView.swift */; };
-		09353363297D18820029ACA4 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09353362297D18820029ACA4 /* Alert.swift */; };
 		09353368297D24BC0029ACA4 /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09353367297D24BC0029ACA4 /* ApiController.swift */; };
 		093905BF297E4D26009F357F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093905BE297E4D26009F357F /* UserModel.swift */; };
 		09396F5E2970FB5A00EDB1E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09396F5D2970FB5A00EDB1E0 /* AppDelegate.swift */; };
@@ -71,7 +70,6 @@
 		0932AB83298D251300FAD71B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		0932ABC6298D2BE000FAD71B /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0932ABE7298D312C00FAD71B /* FoodDataDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDataDetailView.swift; sourceTree = "<group>"; };
-		09353362297D18820029ACA4 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		09353367297D24BC0029ACA4 /* ApiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
 		093905BE297E4D26009F357F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		09396F5A2970FB5A00EDB1E0 /* FoodApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +140,6 @@
 		09353361297D01360029ACA4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				09353362297D18820029ACA4 /* Alert.swift */,
 				093905BE297E4D26009F357F /* UserModel.swift */,
 				09C7A977297E8302009D050C /* FoodItemModel.swift */,
 			);
@@ -533,7 +530,6 @@
 				0932AB21298D126200FAD71B /* MainViewController.swift in Sources */,
 				0932AB29298D14C300FAD71B /* ProfileViewController.swift in Sources */,
 				0969F9A9298D6FE30001C545 /* FoodViewController.swift in Sources */,
-				09353363297D18820029ACA4 /* Alert.swift in Sources */,
 				09C7A978297E8302009D050C /* FoodItemModel.swift in Sources */,
 				0932ABE8298D312C00FAD71B /* FoodDataDetailView.swift in Sources */,
 				093905BF297E4D26009F357F /* UserModel.swift in Sources */,
@@ -637,7 +633,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -692,7 +688,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -753,7 +749,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N2THM4JP49;
 				INFOPLIST_FILE = FoodAppTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -776,7 +772,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N2THM4JP49;
 				INFOPLIST_FILE = FoodAppTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

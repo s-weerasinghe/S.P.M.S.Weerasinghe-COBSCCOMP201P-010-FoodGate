@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     let firstLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Hello Again!"
+        label.text = "Hungry Bird!"
         label.font = .systemFont(ofSize: 25, weight: .bold)
         return label
     }()
@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Recovery password"
         label.font = .systemFont(ofSize: 15)
-        label.textColor = .red
+        label.textColor = .blue
         label.textAlignment = .right
         return label
     }()
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Sign In", for: .normal)
         button.layer.cornerRadius = 8
-        button.backgroundColor = .red
+        button.backgroundColor = .blue
         button.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
         return button
     }()
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Register", for: .normal)
         button.layer.cornerRadius = 8
-        button.backgroundColor = .green
+        button.backgroundColor = .gray
         button.addTarget(self, action: #selector(registerClick), for: .touchUpInside)
         return button
     }()

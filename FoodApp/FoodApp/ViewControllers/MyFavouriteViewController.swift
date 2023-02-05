@@ -20,9 +20,9 @@ class MyFavouriteViewController: UIViewController {
         setupViews()
         setupConstraints()
         customBackButton()
-        orderTableView.delegate = self
-        orderTableView.dataSource = self
-        orderTableView.register(FoodViewTableCell.self, forCellReuseIdentifier: FoodViewTableCell.reuseableId)
+        FavouriteTableView.delegate = self
+        FavouriteTableView.dataSource = self
+        FavouriteTableView.register(FoodViewTableCell.self, forCellReuseIdentifier: FoodViewTableCell.reuseableId)
         
     }
     
@@ -44,19 +44,19 @@ class MyFavouriteViewController: UIViewController {
         controller.getFoodFavList(type: "breakfast") { (foodListGet) in
             DispatchQueue.main.async {
                 self.foodList.append(contentsOf: foodListGet);
-                self.orderTableView.reloadData();
+                self.FavouriteTableView.reloadData();
             }
         }
         controller.getFoodFavList(type: "lunch") { (foodListGet) in
             DispatchQueue.main.async {
                 self.foodList.append(contentsOf: foodListGet);
-                self.orderTableView.reloadData();
+                self.FavouriteTableView.reloadData();
             }
         }
         controller.getFoodFavList(type: "dinner") { (foodListGet) in
             DispatchQueue.main.async {
                 self.foodList.append(contentsOf: foodListGet);
-                self.orderTableView.reloadData();
+                self.FavouriteTableView.reloadData();
             }
         }
     }
@@ -70,7 +70,7 @@ class MyFavouriteViewController: UIViewController {
         return lb
     }()
     
-    let orderTableView: UITableView = {
+    let FavouriteTableView: UITableView = {
         let list = UITableView(frame: .zero)
         list.translatesAutoresizingMaskIntoConstraints = false
         list.showsVerticalScrollIndicator = false
@@ -93,7 +93,7 @@ extension MyFavouriteViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 133.0
+        return 150
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -107,7 +107,7 @@ extension MyFavouriteViewController: UITableViewDelegate, UITableViewDataSource 
     
     func setupViews() {
         view.addSubview(heading)
-        view.addSubview(orderTableView)
+        view.addSubview(FavouriteTableView)
     }
     func setupConstraints() {
         
@@ -116,10 +116,10 @@ extension MyFavouriteViewController: UITableViewDelegate, UITableViewDataSource 
             heading.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             heading.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             
-            orderTableView.topAnchor.constraint(equalTo: heading.bottomAnchor, constant: 10),
-            orderTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            orderTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            orderTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            FavouriteTableView.topAnchor.constraint(equalTo: heading.bottomAnchor, constant: 10),
+            FavouriteTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            FavouriteTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            FavouriteTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
     }

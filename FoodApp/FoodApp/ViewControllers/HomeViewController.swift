@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    let selected_cate = "today"
+
     let controller = ApiController();
     var foodListB:[FoodItemModel]=[ ]
     var foodListL:[FoodItemModel]=[ ]
@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
+        
         setupViews()
         setupConstraints()
         customBackButton()

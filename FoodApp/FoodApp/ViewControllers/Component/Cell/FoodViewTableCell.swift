@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 class FoodViewTableCell: UITableViewCell {
-    static let reuseableId:String = "FoodOrder"
+    static let reuseableId:String = "FavouriteFood"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: FoodViewTableCell.reuseableId)

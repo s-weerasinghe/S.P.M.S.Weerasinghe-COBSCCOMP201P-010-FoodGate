@@ -32,13 +32,5 @@ class FoodLayout {
     }
 
     
-    func defaultLayout () -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
-        
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(100), heightDimension: .absolute(170)), subitems: [item])
-       
-        let section = NSCollectionLayoutSection.init(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-        return section
-    }
+
 }

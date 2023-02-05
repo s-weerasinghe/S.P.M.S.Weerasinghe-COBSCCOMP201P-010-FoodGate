@@ -16,7 +16,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
             manageData()
         }
     }
-    static let reusableId = "DiscountCell"
+    static let reusableId = "foodCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)

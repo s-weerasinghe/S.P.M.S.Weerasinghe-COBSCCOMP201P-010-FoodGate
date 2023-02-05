@@ -24,7 +24,7 @@ class FoodDescriptionDetailsView: UIView {
     // MARK: Properties: -
      let foodTitleLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "Green Pepper Chinese"
+        lb.text = ""
         lb.scaleFont()
         lb.numberOfLines = 1
         lb.font = UIFont.boldSystemFont(ofSize: 16)

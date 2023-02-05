@@ -91,7 +91,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let input =  BFTextField(frame: .zero)
         input.placeholder = "Age"
         input.title = "Age"
-        input.text = "0"
+        input.text = ""
         input.translatesAutoresizingMaskIntoConstraints = false
         return input
     }()

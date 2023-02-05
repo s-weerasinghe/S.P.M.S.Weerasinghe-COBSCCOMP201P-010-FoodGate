@@ -18,15 +18,12 @@ class FoodViewController: UIViewController {
         view.backgroundColor = .white
         
         setupNavigationBar()
-        print("asd")
-        print(type);
-        print(user)
-        
+       
        
         view.addSubview(lblHolder)
         view.addSubview(imageHolder)
         view.isUserInteractionEnabled = true
-        imageHolder.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        imageHolder.heightAnchor.constraint(equalToConstant: 280).isActive = true
         imageHolder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         imageHolder.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         imageHolder.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
@@ -48,16 +45,16 @@ class FoodViewController: UIViewController {
         
         lblHolder.insertArrangedSubview(foodName, at: 0)
         lblHolder.insertArrangedSubview(foodCal, at: 1)
-        lblHolder.insertArrangedSubview(foodDesc, at: 2)
-        lblHolder.insertArrangedSubview(favHolder, at: 3)
+        lblHolder.insertArrangedSubview(foodIng, at: 2)
+        lblHolder.insertArrangedSubview(foodDesc, at: 3)
+        lblHolder.insertArrangedSubview(favHolder, at: 4)
         navigationController?.navigationBar.isHidden = false
         
         
         
         foodName.text = food?.name;
-        
         foodDesc.text = food?.description;
-        
+        foodIng.text = "Ingredients: \(food?.ingredient as! String)";
         foodCal.text = "Calories: \( food?.calories as! Int)"
         
         foodImage.kf.setImage(with: URL(string: food?.img ?? ""))
@@ -86,6 +83,15 @@ class FoodViewController: UIViewController {
         label.text = ""
         return label
     }()
+    let foodIng : UILabel = {
+        let label = UILabel(frame: CGRect(x: 5, y: 0, width: 35, height: 20))
+        label.text = ""
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = ""
+        return label
+    }()
     
     let foodCal : UILabel = {
         let label = UILabel()
@@ -98,7 +104,7 @@ class FoodViewController: UIViewController {
         let holder = UIStackView()
         holder.translatesAutoresizingMaskIntoConstraints = false
         holder.axis = .vertical
-        holder.spacing = 15
+        holder.spacing = 10
         holder.alignment = .center
         holder.isUserInteractionEnabled = true
         return holder
@@ -195,9 +201,14 @@ class FoodViewController: UIViewController {
  
     
     @objc func addFav() {
-        print("asd")
-        print(type);
-        print(user)
+       
         controller.addFav(type: type, food_id: food!.id, user: user!)
+        self.showAlert(title: "Item Added")
+    }
+    func showAlert(title:String){
+        let alertView = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertView.addAction(action)
+        self.present(alertView, animated: true, completion: nil)
     }
 }

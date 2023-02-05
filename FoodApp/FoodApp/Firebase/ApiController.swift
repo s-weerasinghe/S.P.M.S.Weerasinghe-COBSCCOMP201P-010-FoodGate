@@ -88,11 +88,13 @@ class ApiController{
                 let calories = placeDict["calories"] as! Int
                 let id = placeDict["food_id"] as! Int
                 let fid = placeDict["id"] as! String
+                let Ingredients = placeDict["Ingredients"] as! String
+                
                 
                
                 let val = placeDict[uid ?? "id"] ?? ""
                
-                foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav:val as! String=="userFav",description: description))
+                foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav:val as! String=="userFav",description: description,ingredient: Ingredients))
             }
             completionBlock(foods)
         }
@@ -129,7 +131,10 @@ class ApiController{
                     let description = placeDict["description"] as! String
                     let id = placeDict["food_id"] as! Int
                     let fid = placeDict["id"] as! String
-                    foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav: true,description: description))
+                    let Ingredients = placeDict["Ingredients"] as! String
+                    
+                    
+                    foods.append(FoodItemModel(id: fid,food_id: id, img: img, name: name,calories:calories,isFav: true,description: description,ingredient: Ingredients))
                 }
             }
             completionBlock(foods)

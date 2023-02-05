@@ -16,4 +16,5 @@ struct FoodItemModel:Identifiable {
     var calories:Int
     var isFav: Bool
     var description :String;
+    var ingredient :String;
 }
